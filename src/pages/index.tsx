@@ -36,7 +36,7 @@ export default class App extends React.Component<IProps, IState> {
           <Path id={11} initialProbability={1} />
           <Path id={12} initialProbability={1} />
           <Path id={13} initialProbability={1} />
-          <Path id={14} initialProbability={1} />
+          <Path id={14} initialProbability={0.05} />
           <Path id={15} initialProbability={1} />
 
           <Path id={16} initialProbability={0.95} />

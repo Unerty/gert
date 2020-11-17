@@ -21,27 +21,27 @@ export default class App extends React.Component<IProps, IState> {
         <img src={"https://github.com/Unerty/gert/blob/main/static/ris5.png?raw=true"} width={'25%'}/>
         </div>
         <div style={{width: '50%'}}>
-          <Path id={1} initialProbability={1} />
-          <Path id={2} initialProbability={1} />
-          <Path id={3} initialProbability={1} />
-          <Path id={4} initialProbability={1} />
-          <Path id={5} initialProbability={1} />
+          <Path id={1} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={2} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={3} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={4} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={5} initialProbability={1} initialAdditiveParameter={2000}/>
 
-          <Path id={6} initialProbability={1} />
-          <Path id={7} initialProbability={1} />
-          <Path id={8} initialProbability={1} />
-          <Path id={9} initialProbability={1} />
-          <Path id={10} initialProbability={1} />
+          <Path id={6} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={7} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={8} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={9} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={10} initialProbability={1} initialAdditiveParameter={0}/>
 
-          <Path id={11} initialProbability={1} />
-          <Path id={12} initialProbability={1} />
-          <Path id={13} initialProbability={1} />
-          <Path id={14} initialProbability={0.05} />
-          <Path id={15} initialProbability={1} />
+          <Path id={11} initialProbability={1} initialAdditiveParameter={10000}/>
+          <Path id={12} initialProbability={1} initialAdditiveParameter={1000}/>
+          <Path id={13} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={14} initialProbability={0.05} initialAdditiveParameter={0}/>
+          <Path id={15} initialProbability={1} initialAdditiveParameter={0}/>
 
-          <Path id={16} initialProbability={0.95} />
-          <Path id={17} initialProbability={1} />
-          <Path id={18} initialProbability={1} />
+          <Path id={16} initialProbability={0.95} initialAdditiveParameter={0}/>
+          <Path id={17} initialProbability={1} initialAdditiveParameter={0}/>
+          <Path id={18} initialProbability={1} initialAdditiveParameter={500}/>
         </div>
 
       </main>

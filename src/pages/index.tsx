@@ -17,8 +17,19 @@ export default class App extends React.Component<IProps, IState> {
     return (
       <main style={{display: 'flex'}}>
         <div style={{width: '50%'}}>
-        <img src={"https://github.com/Unerty/gert/blob/main/static/ris4.png?raw=true"} width={'75%'}/>
-        <img src={"https://github.com/Unerty/gert/blob/main/static/ris5.png?raw=true"} width={'25%'}/>
+        {/*<img src={"https://github.com/Unerty/gert/blob/main/static/ris4.png?raw=true"} width={'75%'}/>
+        <img src={"https://github.com/Unerty/gert/blob/main/static/ris5.png?raw=true"} width={'25%'}/>*/}
+        <select>
+          <option value={'binomial'}></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+        </select>
         </div>
         <div style={{width: '50%'}}>
           <Path id={1} initialProbability={1} initialAdditiveParameter={0}/>

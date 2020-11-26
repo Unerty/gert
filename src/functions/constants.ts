@@ -1,0 +1,9 @@
+export const BINOMIAL_DISTRIBUTION = 'Біноміальний розподіл';
+export const DISCRETE_DISTRIBUTION = 'Дискретний розподіл';
+export const EXPONENTIAL_DISTRIBUTION = 'Експоненціальний розподіл';
+export const GAMMA_DISTRIBUTION = 'Гамма розподіл';
+export const GEOMETRICAL_DISTRIBUTION = 'Геометричний розподіл';
+export const NEGATIVE_BINOMIAL_DISTRIBUTION = "Від'ємний біноміальний розподіл";
+export const NORMAL_DISTRIBUTION = 'Нормальний розподіл';
+export const PUASSON_DISTRIBUTION = 'Розподіл Пуассона';
+export const CONTINIOUS_UNIFORM_DISTRIBUTION = 'Рівномірний розподіл';

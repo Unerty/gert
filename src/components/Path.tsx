@@ -31,14 +31,14 @@ export default class Path extends React.Component<IProps, IState> {
         margin: '0.5rem',
         padding: '0.25rem'
       }}>
-        <h3>Path number {id}</h3>
-        <span>Price, UAH:<br/></span>
+        <h3>Номер дуги: {id}</h3>
+        <span>Ціна, грн.:<br/></span>
         <input type="number" onChange={event => this.setState({ additiveParameter: Number(event.target.value) })}
                value={additiveParameter.toString()} min={0} step={0.01}
                style={{width: '100px'}}
         />
         <br/>
-        <span>Probabillity: <strong> {probability}</strong><br/></span>
+        <span>Ймовірність: <strong> {probability}</strong><br/></span>
         <input type={'range'} onChange={event => this.setState({ probability: Number(event.target.value) })}
                value={probability.toString()} min={0} max={1} step={0.01}/>
       </div>

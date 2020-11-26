@@ -16,13 +16,33 @@ interface IProps {
 
 interface IState {
   distribution: string;
+  s: number;
+  m: number;
+  r: number;
+  a: number;
+  b: number;
+  p: number;
+  pArray: Array<number>;
+  TArray: Array<number>;
+  lambda: number;
+  sigma: number;
 }
 
 export default class App extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      distribution: BINOMIAL_DISTRIBUTION
+      distribution: BINOMIAL_DISTRIBUTION,
+      s: 1,
+      m: 1,
+      r: 1,
+      a: 1,
+      b: 1,
+      p: 1,
+      pArray: [1],
+      TArray: [1],
+      lambda: 1,
+      sigma: 1
     };
   }
 
@@ -33,9 +53,9 @@ export default class App extends React.Component<IProps, IState> {
         {/*<img src={"https://github.com/Unerty/gert/blob/main/static/ris4.png?raw=true"} width={'75%'}/>
         <img src={"https://github.com/Unerty/gert/blob/main/static/ris5.png?raw=true"} width={'25%'}/>*/}
 
+        Оберіть розподіл:<br/>
         <select value={this.state.distribution}
-                onChange={
-                  event => this.setState({ distribution: event.target.value})}>
+                onChange={event => this.setState({ distribution: event.target.value})}>
           <option value={BINOMIAL_DISTRIBUTION}>{BINOMIAL_DISTRIBUTION}</option>
           <option value={DISCRETE_DISTRIBUTION}>{DISCRETE_DISTRIBUTION}</option>
           <option value={EXPONENTIAL_DISTRIBUTION}>{EXPONENTIAL_DISTRIBUTION}</option>
@@ -45,7 +65,26 @@ export default class App extends React.Component<IProps, IState> {
           <option value={NORMAL_DISTRIBUTION}>{NORMAL_DISTRIBUTION}</option>
           <option value={PUASSON_DISTRIBUTION}>{PUASSON_DISTRIBUTION}</option>
           <option value={CONTINIOUS_UNIFORM_DISTRIBUTION}>{CONTINIOUS_UNIFORM_DISTRIBUTION}</option>
-        </select>
+        </select><br/><br/>
+          Введіть змінні: <br/>
+          s = <input value={this.state.s}
+                     onChange={event => this.setState({ s: Number(event.target.value)})}/><br/>
+          m = <input value={this.state.m}
+                     onChange={event => this.setState({ m: Number(event.target.value)})}/><br/>
+          r = <input value={this.state.r}
+                     onChange={event => this.setState({ r: Number(event.target.value)})}/><br/>
+          a = <input value={this.state.a}
+                     onChange={event => this.setState({ a: Number(event.target.value)})}/><br/>
+          b = <input value={this.state.b}
+                     onChange={event => this.setState({ b: Number(event.target.value)})}/><br/>
+          p = <input value={this.state.p}
+                     onChange={event => this.setState({ p: Number(event.target.value)})}/><br/>
+          p1, p2, ... pn = <input/> <br/>
+          T1, T2, ... Tn = <input/> <br/>
+          lambda = <input value={this.state.lambda}
+                     onChange={event => this.setState({ lambda: Number(event.target.value)})}/><br/>
+          sigma = <input value={this.state.sigma}
+                     onChange={event => this.setState({ sigma: Number(event.target.value)})}/><br/>
         </div>
         <div style={{width: '50%'}}>
           <Path id={1} initialProbability={1} initialAdditiveParameter={0}/>

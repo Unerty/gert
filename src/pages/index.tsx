@@ -1,16 +1,29 @@
 import * as React from 'react';
 import Path from '@/components/Path';
+import {
+  BINOMIAL_DISTRIBUTION, CONTINIOUS_UNIFORM_DISTRIBUTION,
+  DISCRETE_DISTRIBUTION,
+  EXPONENTIAL_DISTRIBUTION,
+  GAMMA_DISTRIBUTION,
+  GEOMETRICAL_DISTRIBUTION,
+  NEGATIVE_BINOMIAL_DISTRIBUTION,
+  NORMAL_DISTRIBUTION,
+  PUASSON_DISTRIBUTION,
+} from '@/functions/constants';
 
 interface IProps {
 }
 
 interface IState {
+  distribution: string;
 }
 
 export default class App extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      distribution: BINOMIAL_DISTRIBUTION
+    };
   }
 
   render() {
@@ -19,16 +32,19 @@ export default class App extends React.Component<IProps, IState> {
         <div style={{width: '50%'}}>
         {/*<img src={"https://github.com/Unerty/gert/blob/main/static/ris4.png?raw=true"} width={'75%'}/>
         <img src={"https://github.com/Unerty/gert/blob/main/static/ris5.png?raw=true"} width={'25%'}/>*/}
-        <select>
-          <option value={'binomial'}></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
+
+        <select value={this.state.distribution}
+                onChange={
+                  event => this.setState({ distribution: event.target.value})}>
+          <option value={BINOMIAL_DISTRIBUTION}>{BINOMIAL_DISTRIBUTION}</option>
+          <option value={DISCRETE_DISTRIBUTION}>{DISCRETE_DISTRIBUTION}</option>
+          <option value={EXPONENTIAL_DISTRIBUTION}>{EXPONENTIAL_DISTRIBUTION}</option>
+          <option value={GAMMA_DISTRIBUTION}>{GAMMA_DISTRIBUTION}</option>
+          <option value={GEOMETRICAL_DISTRIBUTION}>{GEOMETRICAL_DISTRIBUTION}</option>
+          <option value={NEGATIVE_BINOMIAL_DISTRIBUTION}>{NEGATIVE_BINOMIAL_DISTRIBUTION}</option>
+          <option value={NORMAL_DISTRIBUTION}>{NORMAL_DISTRIBUTION}</option>
+          <option value={PUASSON_DISTRIBUTION}>{PUASSON_DISTRIBUTION}</option>
+          <option value={CONTINIOUS_UNIFORM_DISTRIBUTION}>{CONTINIOUS_UNIFORM_DISTRIBUTION}</option>
         </select>
         </div>
         <div style={{width: '50%'}}>

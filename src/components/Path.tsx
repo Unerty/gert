@@ -32,7 +32,7 @@ export default class Path extends React.Component<IProps, IState> {
         padding: '0.25rem'
       }}>
         <h3>Номер дуги: {id}</h3>
-        <span>Ціна, грн.:<br/></span>
+        <span>Вартість, грн.:<br/></span>
         <input type="number" onChange={event => this.setState({ additiveParameter: Number(event.target.value) })}
                value={additiveParameter.toString()} min={0} step={0.01}
                style={{width: '100px'}}

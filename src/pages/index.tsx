@@ -149,7 +149,7 @@ export default class App extends React.Component<IProps, IState> {
           </div>
         </div>
         Результати:
-        µ = 0.000, σ<sup>2</sup> = 0.000
+        µ = 12,879, σ<sup>2</sup> = 9,211
 
       </main>
     );

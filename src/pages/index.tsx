@@ -1,16 +1,6 @@
 import * as React from 'react';
 import Path from '@/components/Path';
-import {
-  BINOMIAL_DISTRIBUTION,
-  CONTINIOUS_UNIFORM_DISTRIBUTION,
-  DISCRETE_DISTRIBUTION,
-  EXPONENTIAL_DISTRIBUTION,
-  GAMMA_DISTRIBUTION,
-  GEOMETRICAL_DISTRIBUTION,
-  NEGATIVE_BINOMIAL_DISTRIBUTION,
-  NORMAL_DISTRIBUTION,
-  PUASSON_DISTRIBUTION,
-} from '@/functions/constants';
+import { Distribution } from '@/functions/constants';
 
 interface IProps {
 }
@@ -47,6 +37,7 @@ export default class App extends React.Component<IProps, IState> {
 
   render() {
 
+    const { BINOMIAL_DISTRIBUTION, CONTINIOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
     const nVisible = (
       this.state.distribution === BINOMIAL_DISTRIBUTION ||
       this.state.distribution === NEGATIVE_BINOMIAL_DISTRIBUTION

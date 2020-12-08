@@ -1,9 +1,11 @@
-export const BINOMIAL_DISTRIBUTION = 'Біноміальний розподіл';
-export const DISCRETE_DISTRIBUTION = 'Дискретний розподіл';
-export const EXPONENTIAL_DISTRIBUTION = 'Експоненціальний розподіл';
-export const GAMMA_DISTRIBUTION = 'Гамма розподіл';
-export const GEOMETRICAL_DISTRIBUTION = 'Геометричний розподіл';
-export const NEGATIVE_BINOMIAL_DISTRIBUTION = "Від'ємний біноміальний розподіл";
-export const NORMAL_DISTRIBUTION = 'Нормальний розподіл';
-export const PUASSON_DISTRIBUTION = 'Розподіл Пуассона';
-export const CONTINIOUS_UNIFORM_DISTRIBUTION = 'Рівномірний розподіл';
+export enum Distribution {
+  BINOMIAL_DISTRIBUTION = 'Біноміальний розподіл',
+  DISCRETE_DISTRIBUTION = 'Дискретний розподіл',
+  EXPONENTIAL_DISTRIBUTION = 'Експоненціальний розподіл',
+  GAMMA_DISTRIBUTION = 'Гамма розподіл',
+  GEOMETRICAL_DISTRIBUTION = 'Геометричний розподіл',
+  NEGATIVE_BINOMIAL_DISTRIBUTION = 'Від\'ємний біноміальний розподіл',
+  NORMAL_DISTRIBUTION = 'Нормальний розподіл',
+  PUASSON_DISTRIBUTION = 'Розподіл Пуассона',
+  CONTINIOUS_UNIFORM_DISTRIBUTION = 'Рівномірний розподіл',
+}

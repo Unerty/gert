@@ -1,37 +1,19 @@
 import * as React from 'react';
 import Path from '@/components/Path';
 import { Distribution } from '@/functions/constants';
+import PathModel from '@/models/PathModel';
 
 interface IProps {
 }
 
 interface IState {
-  distribution: string;
-  s: number;
-  n: number;
-  m: number;
-  r: number;
-  a: number;
-  b: number;
-  p: number;
-  lambda: number;
-  sigma: number;
+  pathes: Array<PathModel>
 }
 
 export default class App extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
-      distribution: BINOMIAL_DISTRIBUTION,
-      s: 1,
-      n: 1,
-      m: 1,
-      r: 1,
-      a: 1,
-      b: 1,
-      p: 1,
-      lambda: 1,
-      sigma: 1,
     };
   }
 

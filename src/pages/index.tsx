@@ -14,6 +14,26 @@ export default class App extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
     this.state = {
+      pathes: [
+        new PathModel(1, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(2, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(3, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(4, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(5, 1, 2000, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(6, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(7, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(8, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(9, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(10, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(11, 1, 10000, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(12, 1, 1000, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(13, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(14, 0.05, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(15, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(16, 0.95, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(17, 1, 0, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(18, 1, 500, Distribution.NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        ],
     };
   }
 

@@ -1,5 +1,5 @@
-export function Mason() {
-  return 0;
+export function wFunction() {
+  return ;
 }
 
 export function binomialDistributionMomentGeneratingFunction(s: number, n: number, p: number) {

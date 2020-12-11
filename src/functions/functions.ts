@@ -1,7 +1,7 @@
 import { Distribution } from '@/functions/constants';
 import PathModel from '@/models/PathModel';
 
-export function wFunction(W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, W14, W15, W16, W17, W18) {
+export function masonFunction(W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, W14, W15, W16, W17, W18) {
   return ((W1 * W3 + W2 * W4 * W5 * W6) * W7 * W8(W9 * W11 + W10 * W12) * W13 * W16 * W17 * W18) / ((1 - W8 * (W9 * W11 + W10 * W12) * W13 * W14 * W15));
 }
 
@@ -51,7 +51,7 @@ export function continuousUniformDistributionMomentGeneratingFunction(s: number,
   return (nominator / denominator);
 }
 
-export function calculateWForPath(path: PathModel) {
+export function calculateWFunctionForPath(path: PathModel) {
   let moment: number;
   let W: number;
   const { a, distribution, s, sigma, lambda, probability, additiveParameter, b, m, n, r } = path;

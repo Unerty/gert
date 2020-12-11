@@ -14,7 +14,7 @@ export default class Path extends React.Component<IProps> {
   }
 
   render() {
-    const { BINOMIAL_DISTRIBUTION, CONTINIOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
+    const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
 
     const nVisible = (
       this.props.distribution === BINOMIAL_DISTRIBUTION ||
@@ -25,11 +25,11 @@ export default class Path extends React.Component<IProps> {
     const aVisible = (
       this.props.distribution === EXPONENTIAL_DISTRIBUTION ||
       this.props.distribution === GAMMA_DISTRIBUTION ||
-      this.props.distribution === CONTINIOUS_UNIFORM_DISTRIBUTION
+      this.props.distribution === CONTINUOUS_UNIFORM_DISTRIBUTION
     ) ? 'unset' : 'none';
     const bVisible = (
       this.props.distribution === GAMMA_DISTRIBUTION ||
-      this.props.distribution === CONTINIOUS_UNIFORM_DISTRIBUTION
+      this.props.distribution === CONTINUOUS_UNIFORM_DISTRIBUTION
     ) ? 'unset' : 'none';
     const pVisible = (
       this.props.distribution === BINOMIAL_DISTRIBUTION ||
@@ -69,7 +69,7 @@ export default class Path extends React.Component<IProps> {
             <option value={NEGATIVE_BINOMIAL_DISTRIBUTION}>{NEGATIVE_BINOMIAL_DISTRIBUTION}</option>
             <option value={NORMAL_DISTRIBUTION}>{NORMAL_DISTRIBUTION}</option>
             <option value={PUASSON_DISTRIBUTION}>{PUASSON_DISTRIBUTION}</option>
-            <option value={CONTINIOUS_UNIFORM_DISTRIBUTION}>{CONTINIOUS_UNIFORM_DISTRIBUTION}</option>
+            <option value={CONTINUOUS_UNIFORM_DISTRIBUTION}>{CONTINUOUS_UNIFORM_DISTRIBUTION}</option>
           </select>
         </div>
         <div style={{ display: nVisible }}>

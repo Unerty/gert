@@ -55,13 +55,13 @@ export function calculateWFunctionForPath(path: PathModel) {
   let moment: number;
   let W: number;
   const { a, distribution, s, sigma, lambda, probability, additiveParameter, b, m, n, r } = path;
-  const { BINOMIAL_DISTRIBUTION, CONTINIOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
+  const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
   switch (distribution) {
     case BINOMIAL_DISTRIBUTION: {
       moment = binomialDistributionMomentGeneratingFunction(s, n, probability);
       break;
     }
-    case CONTINIOUS_UNIFORM_DISTRIBUTION: {
+    case CONTINUOUS_UNIFORM_DISTRIBUTION: {
       moment = continuousUniformDistributionMomentGeneratingFunction(s, a, b);
       break;
     }

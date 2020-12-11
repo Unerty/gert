@@ -8,12 +8,12 @@ export function binomialDistributionMomentGeneratingFunction(s: number, n: numbe
 
 export function discreteDistributionMomentGeneratingFunction(s: number, pArray: Array<number>, TArray: Array<number>) {
   let nominator: number = 0;
-  let denominatior: number = 0;
+  let denominator: number = 0;
   pArray.forEach((p, index) => {
     nominator += (p * Math.pow(Math.E, (s * TArray[index])));
-    denominatior += p;
+    denominator += p;
   });
-  return (nominator / denominatior);
+  return (nominator / denominator);
 }
 
 export function exponentialDistributionMomentGeneratingFunction(s: number, a: number) {
@@ -26,8 +26,8 @@ export function gammaDistributionMomentGeneratingFunction(s: number, a: number, 
 
 export function geometricalDistributionMomentGeneratingFunction(s: number, p: number) {
   let nominator: number = p * Math.pow(Math.E, s);
-  let denominatior: number = (1 - Math.pow(Math.E, s) + p * Math.pow(Math.E, s));
-  return (nominator / denominatior);
+  let denominator: number = (1 - Math.pow(Math.E, s) + p * Math.pow(Math.E, s));
+  return (nominator / denominator);
 }
 
 export function negativeBinomialDistributionMomentGeneratingFunction(s: number, p: number, r: number) {
@@ -44,6 +44,6 @@ export function puassonDistributionMomentGeneratingFunction(s: number, lambda: n
 
 export function continuousUniformDistributionMomentGeneratingFunction(s: number, a: number, b: number) {
   let nominator: number = Math.pow(Math.E, s * a) - Math.pow(Math.E, s * b);
-  let denominatior: number = (a - b) * s;
-  return (nominator / denominatior);
+  let denominator: number = (a - b) * s;
+  return (nominator / denominator);
 }

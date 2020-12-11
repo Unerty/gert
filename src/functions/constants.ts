@@ -1,6 +1,5 @@
 export enum Distribution {
   BINOMIAL_DISTRIBUTION = 'Біноміальний розподіл',
-  DISCRETE_DISTRIBUTION = 'Дискретний розподіл',
   EXPONENTIAL_DISTRIBUTION = 'Експоненціальний розподіл',
   GAMMA_DISTRIBUTION = 'Гамма розподіл',
   GEOMETRICAL_DISTRIBUTION = 'Геометричний розподіл',

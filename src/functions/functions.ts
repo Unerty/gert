@@ -9,16 +9,6 @@ export function binomialDistributionMomentGeneratingFunction(s: number, n: numbe
   return Math.pow((p * Math.pow(Math.E, s) + 1 - p), n);
 }
 
-export function discreteDistributionMomentGeneratingFunction(s: number, pArray: Array<number>, TArray: Array<number>) {
-  let nominator: number = 0;
-  let denominator: number = 0;
-  pArray.forEach((p, index) => {
-    nominator += (p * Math.pow(Math.E, (s * TArray[index])));
-    denominator += p;
-  });
-  return (nominator / denominator);
-}
-
 export function exponentialDistributionMomentGeneratingFunction(s: number, a: number) {
   return Math.pow((1 - (s / a)), -1);
 }

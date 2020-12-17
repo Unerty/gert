@@ -121,7 +121,7 @@ export default class App extends React.Component<IProps, IState> {
           </div>
         </div>
         Результати: <br/>
-        W<small>E</small>(s) = {Math.abs(wEsFunction(
+        W<small>E</small>(s) = {wEsFunction(
         calculateDistributionMomentGeneratingFunctionForPath(pathes[0], false),
         calculateDistributionMomentGeneratingFunctionForPath(pathes[1], false),
         calculateDistributionMomentGeneratingFunctionForPath(pathes[2], false),
@@ -140,7 +140,7 @@ export default class App extends React.Component<IProps, IState> {
         calculateDistributionMomentGeneratingFunctionForPath(pathes[15], false),
         calculateDistributionMomentGeneratingFunctionForPath(pathes[16], false),
         calculateDistributionMomentGeneratingFunctionForPath(pathes[17], false),
-      ))},<br/>
+      )},<br/>
         W<small>E</small>(0) = {wEsFunction(
         calculateDistributionMomentGeneratingFunctionForPath(pathes[0], true),
         calculateDistributionMomentGeneratingFunctionForPath(pathes[1], true),

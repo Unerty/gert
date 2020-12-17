@@ -2,7 +2,12 @@ import * as React from 'react';
 import Path from '@/components/Path';
 import { Distribution } from '@/functions/constants';
 import PathModel from '@/models/PathModel';
-import { calculateWFunctionForPath, wEsFunction } from '@/functions/functions';
+import {
+  calculateDistributionExpectedValueForPath,
+  calculateDistributionMomentGeneratingFunctionForPath,
+  calculateDistributionSecondMomentForPath,
+  wEsFunction,
+} from '@/functions/functions';
 
 const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
 
@@ -19,24 +24,24 @@ export default class App extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       pathes: [
-        new PathModel(1, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(2, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(3, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(4, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(5, 1, 2, GAMMA_DISTRIBUTION, 1, 1, 1, 1, 0.5, 1, 1, 1),
-        new PathModel(6, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(7, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(8, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(9, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(10, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(11, 1, 10, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(12, 1, 1, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(13, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(14, 0.05, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(15, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(16, 0.95, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(17, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(18, 1, 0.5, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(1, 0.6, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(2, 0.4, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(3, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(4, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(5, 1, GAMMA_DISTRIBUTION, 2, 1, 1, 1, 0.5, 1, 1, 1),
+        new PathModel(6, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(7, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(8, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(9, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(10, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(11, 1, NORMAL_DISTRIBUTION, 10, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(12, 1, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(13, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(14, 0.05, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(15, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(16, 0.95,NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(17, 1, NORMAL_DISTRIBUTION, 0, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(18, 1, NORMAL_DISTRIBUTION, 0.5, 1, 1, 1, 1, 1, 1, 1),
       ],
     };
   }
@@ -50,7 +55,6 @@ export default class App extends React.Component<IProps, IState> {
             {pathes.map(
               path => <Path id={path.id}
                             probability={path.probability}
-                            additiveParameter={path.additiveParameter}
                             distribution={path.distribution}
                             s={path.s}
                             m={path.m}
@@ -60,11 +64,6 @@ export default class App extends React.Component<IProps, IState> {
                             b={path.b}
                             lambda={path.lambda}
                             sigma={path.sigma}
-                            setAdditiveParameter={(additiveParameter: number) => {
-                              let pathes = this.state.pathes;
-                              path.additiveParameter = additiveParameter;
-                              this.setState({ pathes: pathes });
-                            }}
                             setProbability={(probability: number) => {
                               let pathes = this.state.pathes;
                               path.probability = probability;
@@ -122,47 +121,47 @@ export default class App extends React.Component<IProps, IState> {
           </div>
         </div>
         Результати: <br/>
-        W<small>E</small>(s) = {wEsFunction(
-        calculateWFunctionForPath(pathes[0],false),
-        calculateWFunctionForPath(pathes[1],false),
-        calculateWFunctionForPath(pathes[2],false),
-        calculateWFunctionForPath(pathes[3],false),
-        calculateWFunctionForPath(pathes[4],false),
-        calculateWFunctionForPath(pathes[5],false),
-        calculateWFunctionForPath(pathes[6],false),
-        calculateWFunctionForPath(pathes[7],false),
-        calculateWFunctionForPath(pathes[8],false),
-        calculateWFunctionForPath(pathes[9],false),
-        calculateWFunctionForPath(pathes[10],false),
-        calculateWFunctionForPath(pathes[11],false),
-        calculateWFunctionForPath(pathes[12],false),
-        calculateWFunctionForPath(pathes[13],false),
-        calculateWFunctionForPath(pathes[14],false),
-        calculateWFunctionForPath(pathes[15],false),
-        calculateWFunctionForPath(pathes[16],false),
-        calculateWFunctionForPath(pathes[17],false),
-        )},<br/>
+        W<small>E</small>(s) = {Math.abs(wEsFunction(
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[0], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[1], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[2], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[3], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[4], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[5], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[6], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[7], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[8], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[9], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[10], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[11], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[12], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[13], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[14], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[15], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[16], false),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[17], false),
+      ))},<br/>
         W<small>E</small>(0) = {wEsFunction(
-        calculateWFunctionForPath(pathes[0],true),
-        calculateWFunctionForPath(pathes[1],true),
-        calculateWFunctionForPath(pathes[2],true),
-        calculateWFunctionForPath(pathes[3],true),
-        calculateWFunctionForPath(pathes[4],true),
-        calculateWFunctionForPath(pathes[5],true),
-        calculateWFunctionForPath(pathes[6],true),
-        calculateWFunctionForPath(pathes[7],true),
-        calculateWFunctionForPath(pathes[8],true),
-        calculateWFunctionForPath(pathes[9],true),
-        calculateWFunctionForPath(pathes[10],true),
-        calculateWFunctionForPath(pathes[11],true),
-        calculateWFunctionForPath(pathes[12],true),
-        calculateWFunctionForPath(pathes[13],true),
-        calculateWFunctionForPath(pathes[14],true),
-        calculateWFunctionForPath(pathes[15],true),
-        calculateWFunctionForPath(pathes[16],true),
-        calculateWFunctionForPath(pathes[17],true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[0], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[1], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[2], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[3], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[4], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[5], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[6], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[7], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[8], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[9], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[10], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[11], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[12], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[13], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[14], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[15], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[16], true),
+        calculateDistributionMomentGeneratingFunctionForPath(pathes[17], true),
       )},<br/>
-      p<small>E</small> = {wEsFunction(
+        p<small>E</small> = {wEsFunction(
         pathes[0].probability,
         pathes[1].probability,
         pathes[2].probability,
@@ -181,9 +180,89 @@ export default class App extends React.Component<IProps, IState> {
         pathes[15].probability,
         pathes[16].probability,
         pathes[17].probability,
-      )/6},<br/>
-      µ = 12,879,<br/>
-      σ<sup>2</sup> = 9,211<br/>
+      )},<br/>
+        µ = {wEsFunction(
+        calculateDistributionExpectedValueForPath(pathes[0]),
+        calculateDistributionExpectedValueForPath(pathes[1]),
+        calculateDistributionExpectedValueForPath(pathes[2]),
+        calculateDistributionExpectedValueForPath(pathes[3]),
+        calculateDistributionExpectedValueForPath(pathes[4]),
+        calculateDistributionExpectedValueForPath(pathes[5]),
+        calculateDistributionExpectedValueForPath(pathes[6]),
+        calculateDistributionExpectedValueForPath(pathes[7]),
+        calculateDistributionExpectedValueForPath(pathes[8]),
+        calculateDistributionExpectedValueForPath(pathes[9]),
+        calculateDistributionExpectedValueForPath(pathes[10]),
+        calculateDistributionExpectedValueForPath(pathes[11]),
+        calculateDistributionExpectedValueForPath(pathes[12]),
+        calculateDistributionExpectedValueForPath(pathes[13]),
+        calculateDistributionExpectedValueForPath(pathes[14]),
+        calculateDistributionExpectedValueForPath(pathes[15]),
+        calculateDistributionExpectedValueForPath(pathes[16]),
+        calculateDistributionExpectedValueForPath(pathes[17]),
+      )},<br/>
+        Другий момент = {wEsFunction(
+        calculateDistributionSecondMomentForPath(pathes[0]),
+        calculateDistributionSecondMomentForPath(pathes[1]),
+        calculateDistributionSecondMomentForPath(pathes[2]),
+        calculateDistributionSecondMomentForPath(pathes[3]),
+        calculateDistributionSecondMomentForPath(pathes[4]),
+        calculateDistributionSecondMomentForPath(pathes[5]),
+        calculateDistributionSecondMomentForPath(pathes[6]),
+        calculateDistributionSecondMomentForPath(pathes[7]),
+        calculateDistributionSecondMomentForPath(pathes[8]),
+        calculateDistributionSecondMomentForPath(pathes[9]),
+        calculateDistributionSecondMomentForPath(pathes[10]),
+        calculateDistributionSecondMomentForPath(pathes[11]),
+        calculateDistributionSecondMomentForPath(pathes[12]),
+        calculateDistributionSecondMomentForPath(pathes[13]),
+        calculateDistributionSecondMomentForPath(pathes[14]),
+        calculateDistributionSecondMomentForPath(pathes[15]),
+        calculateDistributionSecondMomentForPath(pathes[16]),
+        calculateDistributionSecondMomentForPath(pathes[17]),
+      )},<br/>
+        σ<sup>2</sup> = {
+        wEsFunction(
+          calculateDistributionSecondMomentForPath(pathes[0]),
+          calculateDistributionSecondMomentForPath(pathes[1]),
+          calculateDistributionSecondMomentForPath(pathes[2]),
+          calculateDistributionSecondMomentForPath(pathes[3]),
+          calculateDistributionSecondMomentForPath(pathes[4]),
+          calculateDistributionSecondMomentForPath(pathes[5]),
+          calculateDistributionSecondMomentForPath(pathes[6]),
+          calculateDistributionSecondMomentForPath(pathes[7]),
+          calculateDistributionSecondMomentForPath(pathes[8]),
+          calculateDistributionSecondMomentForPath(pathes[9]),
+          calculateDistributionSecondMomentForPath(pathes[10]),
+          calculateDistributionSecondMomentForPath(pathes[11]),
+          calculateDistributionSecondMomentForPath(pathes[12]),
+          calculateDistributionSecondMomentForPath(pathes[13]),
+          calculateDistributionSecondMomentForPath(pathes[14]),
+          calculateDistributionSecondMomentForPath(pathes[15]),
+          calculateDistributionSecondMomentForPath(pathes[16]),
+          calculateDistributionSecondMomentForPath(pathes[17]),
+        ) - Math.pow(wEsFunction(
+          calculateDistributionExpectedValueForPath(pathes[0]),
+          calculateDistributionExpectedValueForPath(pathes[1]),
+          calculateDistributionExpectedValueForPath(pathes[2]),
+          calculateDistributionExpectedValueForPath(pathes[3]),
+          calculateDistributionExpectedValueForPath(pathes[4]),
+          calculateDistributionExpectedValueForPath(pathes[5]),
+          calculateDistributionExpectedValueForPath(pathes[6]),
+          calculateDistributionExpectedValueForPath(pathes[7]),
+          calculateDistributionExpectedValueForPath(pathes[8]),
+          calculateDistributionExpectedValueForPath(pathes[9]),
+          calculateDistributionExpectedValueForPath(pathes[10]),
+          calculateDistributionExpectedValueForPath(pathes[11]),
+          calculateDistributionExpectedValueForPath(pathes[12]),
+          calculateDistributionExpectedValueForPath(pathes[13]),
+          calculateDistributionExpectedValueForPath(pathes[14]),
+          calculateDistributionExpectedValueForPath(pathes[15]),
+          calculateDistributionExpectedValueForPath(pathes[16]),
+          calculateDistributionExpectedValueForPath(pathes[17]),
+        ), 2)
+      }
+        <br/>
 
       </main>
     );

@@ -1,10 +1,9 @@
 import { Distribution } from '@/functions/constants';
 
 export default class PathModel {
-  constructor(id: number, probability: number, additiveParameter: number, distribution: Distribution, s: number, n: number, m: number, r: number, a: number, b: number, lambda: number, sigma: number) {
+  constructor(id: number, probability: number, distribution: Distribution, s: number, n: number, m: number, r: number, a: number, b: number, lambda: number, sigma: number) {
     this.id = id;
     this.probability = probability;
-    this.additiveParameter = additiveParameter;
     this.distribution = distribution;
     this.s = s;
     this.n = n;
@@ -17,7 +16,6 @@ export default class PathModel {
   }
   id: number;
   probability: number;
-  additiveParameter: number;
   distribution: Distribution;
   s: number;
   n: number;

@@ -5,39 +5,39 @@ export function wEsFunction(W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W
   return ((W1 * W3 + W2 * W4 * W5 * W6) * W7 * W8 * (W9 * W11 + W10 * W12) * W13 * W16 * W17 * W18) / ((1 - W8 * (W9 * W11 + W10 * W12) * W13 * W14 * W15));
 }
 
-export function binomialDistributionMomentGeneratingFunction(s: number, n: number, p: number, additiveParameter: number) {
-  return Math.pow((p * Math.pow(Math.E, additiveParameter * s) + 1 - p), n);
+export function binomialDistributionMomentGeneratingFunction(s: number, n: number, p: number) {
+  return Math.pow((p * Math.pow(Math.E, s) + 1 - p), n);
 }
 
-export function exponentialDistributionMomentGeneratingFunction(s: number, a: number, additiveParameter: number) {
-  return Math.pow((1 - ((additiveParameter * s) / a)), -1);
+export function exponentialDistributionMomentGeneratingFunction(s: number, a: number) {
+  return Math.pow((1 - (s / a)), -1);
 }
 
-export function gammaDistributionMomentGeneratingFunction(s: number, a: number, b: number, additiveParameter: number) {
-  return Math.pow((1 - ((additiveParameter * s) / a)), (-1 * b));
+export function gammaDistributionMomentGeneratingFunction(s: number, a: number, b: number) {
+  return Math.pow((1 - (s / a)), (-1 * b));
 }
 
-export function geometricalDistributionMomentGeneratingFunction(s: number, p: number, additiveParameter: number) {
-  let nominator: number = p * Math.pow(Math.E, (additiveParameter * s));
-  let denominator: number = (1 - Math.pow(Math.E, (additiveParameter * s)) + p * Math.pow(Math.E, (additiveParameter * s)));
+export function geometricalDistributionMomentGeneratingFunction(s: number, p: number) {
+  let nominator: number = p * Math.pow(Math.E, s);
+  let denominator: number = (1 - Math.pow(Math.E, s) + p * Math.pow(Math.E, s));
   return (nominator / denominator);
 }
 
-export function negativeBinomialDistributionMomentGeneratingFunction(s: number, p: number, r: number, additiveParameter: number) {
-  return Math.pow(p / (1 - Math.pow(Math.E, (additiveParameter * s)) + p * Math.pow(Math.E, (additiveParameter * s))), r);
+export function negativeBinomialDistributionMomentGeneratingFunction(s: number, p: number, r: number) {
+  return Math.pow(p / (1 - Math.pow(Math.E, s) + p * Math.pow(Math.E, s)), r);
 }
 
-export function normalDistributionMomentGeneratingFunction(s: number, m: number, sigma: number, additiveParameter: number) {
-  return Math.pow(Math.E, (additiveParameter * s) * m + (1 / 2) * (additiveParameter * s) * (additiveParameter * s) * sigma * sigma);
+export function normalDistributionMomentGeneratingFunction(s: number, m: number, sigma: number) {
+  return Math.pow(Math.E, s * m + (1 / 2) * s * s * sigma * sigma);
 }
 
-export function puassonDistributionMomentGeneratingFunction(s: number, lambda: number, additiveParameter: number) {
-  return Math.pow(Math.E, lambda * (Math.pow(Math.E, (additiveParameter * s)) - 1));
+export function puassonDistributionMomentGeneratingFunction(s: number, lambda: number) {
+  return Math.pow(Math.E, lambda * (Math.pow(Math.E, s) - 1));
 }
 
-export function continuousUniformDistributionMomentGeneratingFunction(s: number, a: number, b: number, additiveParameter: number) {
-  let nominator: number = Math.pow(Math.E, (additiveParameter * s) * a) - Math.pow(Math.E, (additiveParameter * s) * b);
-  let denominator: number = (a - b) * (additiveParameter * s);
+export function continuousUniformDistributionMomentGeneratingFunction(s: number, a: number, b: number) {
+  let nominator: number = Math.pow(Math.E, s * a) - Math.pow(Math.E, s * b);
+  let denominator: number = (a - b) * s;
   return (nominator / denominator);
 }
 
@@ -62,11 +62,11 @@ export function negativeBinomialDistributionExpectedValueFunction(r: number, p: 
   return (r * (1 - p)) / p;
 }
 
-export function normalBinomialDistributionExpectedValueFunction(m: number) {
+export function normalDistributionExpectedValueFunction(m: number) {
   return m;
 }
 
-export function puassonBinomialDistributionExpectedValueFunction(lambda: number) {
+export function puassonDistributionExpectedValueFunction(lambda: number) {
   return lambda;
 }
 
@@ -95,11 +95,11 @@ export function negativeBinomialDistributionSecondMomentFunction(r: number, p: n
   return (r * (1 - p) * (1 + r - r * p)) / (p * p);
 }
 
-export function normalBinomialDistributionSecondMomentFunction(m: number, sigma: number) {
+export function normalDistributionSecondMomentFunction(m: number, sigma: number) {
   return m * m + sigma * sigma;
 }
 
-export function puassonBinomialDistributionSecondMomentFunction(lambda: number) {
+export function puassonDistributionSecondMomentFunction(lambda: number) {
   return lambda * (1 + lambda);
 }
 
@@ -108,43 +108,129 @@ export function continuousUniformDistributionSecondMomentFunction(a: number, b: 
 }
 
 
-export function calculateWFunctionForPath(path: PathModel, isSEqualZero: boolean) {
+export function calculateDistributionMomentGeneratingFunctionForPath(path: PathModel, isSEqualZero: boolean) {
   let moment: number;
   let W: number;
-  const { a, distribution, sigma, lambda, probability, additiveParameter, b, m, n, r } = path;
+  const { a, distribution, sigma, lambda, probability, b, m, n, r } = path;
   let s = isSEqualZero ? 0 : path.s;
   const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
   switch (distribution) {
     case BINOMIAL_DISTRIBUTION: {
-      moment = binomialDistributionMomentGeneratingFunction(s, n, probability, additiveParameter);
+      moment = binomialDistributionMomentGeneratingFunction(s, n, probability);
       break;
     }
     case CONTINUOUS_UNIFORM_DISTRIBUTION: {
-      moment = continuousUniformDistributionMomentGeneratingFunction(s, a, b, additiveParameter);
+      moment = continuousUniformDistributionMomentGeneratingFunction(s, a, b);
       break;
     }
     case EXPONENTIAL_DISTRIBUTION: {
-      moment = exponentialDistributionMomentGeneratingFunction(s, a, additiveParameter);
+      moment = exponentialDistributionMomentGeneratingFunction(s, a);
       break;
     }
     case GAMMA_DISTRIBUTION: {
-      moment = gammaDistributionMomentGeneratingFunction(s, a, b, additiveParameter);
+      moment = gammaDistributionMomentGeneratingFunction(s, a, b);
       break;
     }
     case GEOMETRICAL_DISTRIBUTION: {
-      moment = geometricalDistributionMomentGeneratingFunction(s, probability, additiveParameter);
+      moment = geometricalDistributionMomentGeneratingFunction(s, probability);
       break;
     }
     case NEGATIVE_BINOMIAL_DISTRIBUTION: {
-      moment = negativeBinomialDistributionMomentGeneratingFunction(s, probability, r, additiveParameter);
+      moment = negativeBinomialDistributionMomentGeneratingFunction(s, probability, r);
       break;
     }
     case NORMAL_DISTRIBUTION: {
-      moment = normalDistributionMomentGeneratingFunction(s, m, sigma, additiveParameter);
+      moment = normalDistributionMomentGeneratingFunction(s, m, sigma);
       break;
     }
     case PUASSON_DISTRIBUTION: {
-      moment = puassonDistributionMomentGeneratingFunction(s, lambda, additiveParameter);
+      moment = puassonDistributionMomentGeneratingFunction(s, lambda);
+      break;
+    }
+  }
+  W = moment * probability;
+  return W;
+}
+
+export function calculateDistributionExpectedValueForPath(path: PathModel) {
+  let moment: number;
+  let W: number;
+  const { a, distribution, lambda, probability, b, m, n, r } = path;
+  const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
+  switch (distribution) {
+    case BINOMIAL_DISTRIBUTION: {
+      moment = binomialDistributionExpectedValueFunction(n, probability);
+      break;
+    }
+    case CONTINUOUS_UNIFORM_DISTRIBUTION: {
+      moment = continuousUniformDistributionExpectedValueFunction(a, b);
+      break;
+    }
+    case EXPONENTIAL_DISTRIBUTION: {
+      moment = exponentialDistributionExpectedValueFunction(a);
+      break;
+    }
+    case GAMMA_DISTRIBUTION: {
+      moment = gammaDistributionExpectedValueFunction(a, b);
+      break;
+    }
+    case GEOMETRICAL_DISTRIBUTION: {
+      moment = geometricalDistributionExpectedValueFunction(probability);
+      break;
+    }
+    case NEGATIVE_BINOMIAL_DISTRIBUTION: {
+      moment = negativeBinomialDistributionExpectedValueFunction(probability, r);
+      break;
+    }
+    case NORMAL_DISTRIBUTION: {
+      moment = normalDistributionExpectedValueFunction(m);
+      break;
+    }
+    case PUASSON_DISTRIBUTION: {
+      moment = puassonDistributionExpectedValueFunction(lambda);
+      break;
+    }
+  }
+  W = moment * probability;
+  return W;
+}
+
+export function calculateDistributionSecondMomentForPath(path: PathModel) {
+  let moment: number;
+  let W: number;
+  const { a, distribution, lambda, sigma, probability, b, m, n, r } = path;
+  const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
+  switch (distribution) {
+    case BINOMIAL_DISTRIBUTION: {
+      moment = binomialDistributionSecondMomentFunction(n, probability);
+      break;
+    }
+    case CONTINUOUS_UNIFORM_DISTRIBUTION: {
+      moment = continuousUniformDistributionSecondMomentFunction(a, b);
+      break;
+    }
+    case EXPONENTIAL_DISTRIBUTION: {
+      moment = exponentialDistributionSecondMomentFunction(a);
+      break;
+    }
+    case GAMMA_DISTRIBUTION: {
+      moment = gammaDistributionSecondMomentFunction(a, b);
+      break;
+    }
+    case GEOMETRICAL_DISTRIBUTION: {
+      moment = geometricalDistributionSecondMomentFunction(probability);
+      break;
+    }
+    case NEGATIVE_BINOMIAL_DISTRIBUTION: {
+      moment = negativeBinomialDistributionSecondMomentFunction(probability, r);
+      break;
+    }
+    case NORMAL_DISTRIBUTION: {
+      moment = normalDistributionSecondMomentFunction(m, sigma);
+      break;
+    }
+    case PUASSON_DISTRIBUTION: {
+      moment = puassonDistributionSecondMomentFunction(lambda);
       break;
     }
   }

@@ -3,7 +3,6 @@ import PathModel from '@/models/PathModel';
 import { Distribution } from '@/functions/constants';
 
 interface IProps extends PathModel {
-  setAdditiveParameter: (additiveParameter: number) => void;
   setProbability: (probability: number) => void;
   setDistribution: (distribution: string) => void;
   setA: (a: number) => void;
@@ -49,7 +48,6 @@ export default class Path extends React.Component<IProps> {
     const {
       id,
       probability,
-      additiveParameter,
       distribution,
       lambda,
       sigma,
@@ -59,7 +57,6 @@ export default class Path extends React.Component<IProps> {
       n,
       r,
       s,
-      setAdditiveParameter,
       setProbability,
       setDistribution,
       setA,
@@ -82,9 +79,9 @@ export default class Path extends React.Component<IProps> {
       }}>
         <div>
           <h3>Номер дуги: {id}</h3>
-          <span>Вартість, грн.:<br/></span>
-          <input type="number" onChange={event => setAdditiveParameter(Number(event.target.value))}
-                 value={additiveParameter.toString()} min={0} step={0.01}
+          <span>s = </span>
+          <input type="number" onChange={event => setS(Number(event.target.value))}
+                 value={s.toString()} min={0} step={0.01}
                  style={{ width: '100px' }}
           />
           <br/>

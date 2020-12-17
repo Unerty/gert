@@ -162,6 +162,26 @@ export default class App extends React.Component<IProps, IState> {
         calculateWFunctionForPath(pathes[16],true),
         calculateWFunctionForPath(pathes[17],true),
       )},<br/>
+      p<small>E</small> = {wEsFunction(
+        pathes[0].probability,
+        pathes[1].probability,
+        pathes[2].probability,
+        pathes[3].probability,
+        pathes[4].probability,
+        pathes[5].probability,
+        pathes[6].probability,
+        pathes[7].probability,
+        pathes[8].probability,
+        pathes[9].probability,
+        pathes[10].probability,
+        pathes[11].probability,
+        pathes[12].probability,
+        pathes[13].probability,
+        pathes[14].probability,
+        pathes[15].probability,
+        pathes[16].probability,
+        pathes[17].probability,
+      )/6},<br/>
       µ = 12,879,<br/>
       σ<sup>2</sup> = 9,211<br/>
 

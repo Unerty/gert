@@ -2,6 +2,7 @@ import * as React from 'react';
 import Path from '@/components/Path';
 import { Distribution } from '@/functions/constants';
 import PathModel from '@/models/PathModel';
+import { calculateWFunctionForPath, wEsFunction } from '@/functions/functions';
 
 const { BINOMIAL_DISTRIBUTION, CONTINUOUS_UNIFORM_DISTRIBUTION, EXPONENTIAL_DISTRIBUTION, GAMMA_DISTRIBUTION, GEOMETRICAL_DISTRIBUTION, NEGATIVE_BINOMIAL_DISTRIBUTION, NORMAL_DISTRIBUTION, PUASSON_DISTRIBUTION } = Distribution;
 
@@ -64,7 +65,7 @@ export default class App extends React.Component<IProps, IState> {
                               path.additiveParameter = additiveParameter;
                               this.setState({ pathes: pathes });
                             }}
-                            setProbability= {(probability: number) => {
+                            setProbability={(probability: number) => {
                               let pathes = this.state.pathes;
                               path.probability = probability;
                               this.setState({ pathes: pathes });
@@ -75,13 +76,54 @@ export default class App extends React.Component<IProps, IState> {
                               this.setState({ pathes: pathes });
                             }}
 
-              />
+              />,
             )}
 
           </div>
         </div>
-        Результати:
-        µ = 12,879, σ<sup>2</sup> = 9,211
+        Результати: <br/>
+        W<small>E</small>(s) = {wEsFunction(
+        calculateWFunctionForPath(pathes[0],false),
+        calculateWFunctionForPath(pathes[1],false),
+        calculateWFunctionForPath(pathes[2],false),
+        calculateWFunctionForPath(pathes[3],false),
+        calculateWFunctionForPath(pathes[4],false),
+        calculateWFunctionForPath(pathes[5],false),
+        calculateWFunctionForPath(pathes[6],false),
+        calculateWFunctionForPath(pathes[7],false),
+        calculateWFunctionForPath(pathes[8],false),
+        calculateWFunctionForPath(pathes[9],false),
+        calculateWFunctionForPath(pathes[10],false),
+        calculateWFunctionForPath(pathes[11],false),
+        calculateWFunctionForPath(pathes[12],false),
+        calculateWFunctionForPath(pathes[13],false),
+        calculateWFunctionForPath(pathes[14],false),
+        calculateWFunctionForPath(pathes[15],false),
+        calculateWFunctionForPath(pathes[16],false),
+        calculateWFunctionForPath(pathes[17],false),
+        )},<br/>
+        W<small>E</small>(0) = {wEsFunction(
+        calculateWFunctionForPath(pathes[0],true),
+        calculateWFunctionForPath(pathes[1],true),
+        calculateWFunctionForPath(pathes[2],true),
+        calculateWFunctionForPath(pathes[3],true),
+        calculateWFunctionForPath(pathes[4],true),
+        calculateWFunctionForPath(pathes[5],true),
+        calculateWFunctionForPath(pathes[6],true),
+        calculateWFunctionForPath(pathes[7],true),
+        calculateWFunctionForPath(pathes[8],true),
+        calculateWFunctionForPath(pathes[9],true),
+        calculateWFunctionForPath(pathes[10],true),
+        calculateWFunctionForPath(pathes[11],true),
+        calculateWFunctionForPath(pathes[12],true),
+        calculateWFunctionForPath(pathes[13],true),
+        calculateWFunctionForPath(pathes[14],true),
+        calculateWFunctionForPath(pathes[15],true),
+        calculateWFunctionForPath(pathes[16],true),
+        calculateWFunctionForPath(pathes[17],true),
+      )},<br/>
+      µ = 12,879,<br/>
+      σ<sup>2</sup> = 9,211<br/>
 
       </main>
     );

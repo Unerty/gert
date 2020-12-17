@@ -6,6 +6,14 @@ interface IProps extends PathModel {
   setAdditiveParameter: (additiveParameter: number) => void;
   setProbability: (probability: number) => void;
   setDistribution: (distribution: string) => void;
+  setA: (a: number) => void;
+  setB: (b: number) => void;
+  setM: (M: number) => void;
+  setN: (n: number) => void;
+  setR: (r: number) => void;
+  setS: (s: number) => void;
+  setLambda: (lambda: number) => void;
+  setSigma: (sigma: number) => void;
 }
 
 export default class Path extends React.Component<IProps> {
@@ -38,7 +46,31 @@ export default class Path extends React.Component<IProps> {
     ) ? 'unset' : 'none';
     const lambdaVisible = this.props.distribution === PUASSON_DISTRIBUTION ? 'unset' : 'none';
     const sigmaVisible = this.props.distribution === NORMAL_DISTRIBUTION ? 'unset' : 'none';
-    const { id, probability, additiveParameter, distribution, lambda, sigma, a, b, m, n, r, s, setAdditiveParameter, setProbability, setDistribution } = this.props;
+    const {
+      id,
+      probability,
+      additiveParameter,
+      distribution,
+      lambda,
+      sigma,
+      a,
+      b,
+      m,
+      n,
+      r,
+      s,
+      setAdditiveParameter,
+      setProbability,
+      setDistribution,
+      setA,
+      setB,
+      setM,
+      setN,
+      setR,
+      setS,
+      setLambda,
+      setSigma,
+    } = this.props;
     return (
       <div style={{
         backgroundColor: 'sandybrown',
@@ -60,7 +92,7 @@ export default class Path extends React.Component<IProps> {
           <input type={'range'} onChange={event => setProbability(Number(event.target.value))}
                  value={probability.toString()} min={0} max={1} step={0.01}/><br/>
           Розподіл:<br/>
-          <select value={this.props.distribution}
+          <select value={distribution}
                   onChange={event => setDistribution(event.target.value)}>
             <option value={BINOMIAL_DISTRIBUTION}>{BINOMIAL_DISTRIBUTION}</option>
             <option value={EXPONENTIAL_DISTRIBUTION}>{EXPONENTIAL_DISTRIBUTION}</option>
@@ -74,38 +106,38 @@ export default class Path extends React.Component<IProps> {
         </div>
         <div style={{ display: nVisible }}>
           <br/>
-          n = <input value={this.props.n}
-                     onChange={event => this.setState({ n: Number(event.target.value) })}/><br/>
+          n = <input type={'number'} value={n}
+                     onChange={event => setN(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: mVisible }}>
           <br/>
-          m = <input value={this.props.m}
-                     onChange={event => this.setState({ m: Number(event.target.value) })}/><br/>
+          m = <input type={'number'} value={m}
+                     onChange={event => setM(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: rVisible }}>
           <br/>
-          r = <input value={this.props.r}
-                     onChange={event => this.setState({ r: Number(event.target.value) })}/><br/>
+          r = <input type={'number'} value={r}
+                     onChange={event => setR(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: aVisible }}>
           <br/>
-          a = <input value={this.props.a}
-                     onChange={event => this.setState({ a: Number(event.target.value) })}/><br/>
+          a = <input type="number" value={a}
+                     onChange={event => setA(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: bVisible }}>
           <br/>
-          b = <input value={this.props.b}
-                     onChange={event => this.setState({ b: Number(event.target.value) })}/><br/>
+          b = <input type="number" value={b}
+                     onChange={event => setB(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: lambdaVisible }}>
           <br/>
-          lambda = <input value={this.props.lambda}
-                          onChange={event => this.setState({ lambda: Number(event.target.value) })}/><br/>
+          lambda = <input type="number" value={lambda}
+                          onChange={event => setLambda(Number(event.target.value))}/><br/>
         </div>
         <div style={{ display: sigmaVisible }}>
           <br/>
-          sigma = <input value={this.props.sigma}
-                         onChange={event => this.setState({ sigma: Number(event.target.value) })}/><br/>
+          sigma = <input type="number" value={sigma}
+                         onChange={event => setSigma(Number(event.target.value))}/><br/>
         </div>
       </div>
     );

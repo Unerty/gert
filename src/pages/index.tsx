@@ -23,7 +23,7 @@ export default class App extends React.Component<IProps, IState> {
         new PathModel(2, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
         new PathModel(3, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
         new PathModel(4, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
-        new PathModel(5, 1, 2000, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
+        new PathModel(5, 1, 2000, GAMMA_DISTRIBUTION, 1, 1, 0, 1, 1, 1, 1, 1),
         new PathModel(6, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
         new PathModel(7, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
         new PathModel(8, 1, 0, NORMAL_DISTRIBUTION, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -73,6 +73,46 @@ export default class App extends React.Component<IProps, IState> {
                             setDistribution={(distribution: Distribution) => {
                               let pathes = this.state.pathes;
                               path.distribution = distribution;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setA={(a: number) => {
+                              let pathes = this.state.pathes;
+                              path.a = a;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setB={(b: number) => {
+                              let pathes = this.state.pathes;
+                              path.b = b;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setM={(m: number) => {
+                              let pathes = this.state.pathes;
+                              path.m = m;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setN={(n: number) => {
+                              let pathes = this.state.pathes;
+                              path.n = n;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setR={(r: number) => {
+                              let pathes = this.state.pathes;
+                              path.r = r;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setS={(s: number) => {
+                              let pathes = this.state.pathes;
+                              path.s = s;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setLambda={(lambda: number) => {
+                              let pathes = this.state.pathes;
+                              path.lambda = lambda;
+                              this.setState({ pathes: pathes });
+                            }}
+                            setSigma={(sigma: number) => {
+                              let pathes = this.state.pathes;
+                              path.sigma = sigma;
                               this.setState({ pathes: pathes });
                             }}
 
